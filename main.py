@@ -51,6 +51,9 @@ def setvanity():
     else:
         print_error(f'Failed to set vanity URL: {patch_response.text}')
 
+def kick_user(user_id):
+    kick_url = f'{base_url}/guilds/{serverid}/members/{user_id}'
+    response = requests.delete(kick_url, headers=headers)
 
 
 
