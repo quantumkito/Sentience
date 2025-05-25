@@ -54,6 +54,11 @@ def setvanity():
 def kick_user(user_id):
     kick_url = f'{base_url}/guilds/{serverid}/members/{user_id}'
     response = requests.delete(kick_url, headers=headers)
+    if response.status_code == 204:
+        print_success(f'User {user_id} has been kicked from the server.')
+    else:
+        print_error(f'Unable to kick user {user_id} due to {response.text}')
+
 
 
 
