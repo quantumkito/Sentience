@@ -22,5 +22,20 @@ headers = {
     'User-Agent': ua.random                                                                                                                                                                                                                                                        
 }
 
+def print_success(message):
+    print(f'\033[92m[+] {message}\033[0m')
+
+def print_error(message):
+    print(f'\033[91m[-] {message}\033[0m')
+
+def vanitycodecd():
+    response = requests.get(settings_url, headers=headers)
+    if response.status_code == 200:
+        return response.json().get('code')                                                                                                                                                                                                                                                          
+    else:                                                                                                                                                                                                                                                          
+        print_error(f'Failed to get current vanity URL: {response.text}')
+        return None
+    
+
 
 
