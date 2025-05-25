@@ -36,6 +36,14 @@ def vanitycodecd():
         print_error(f'Failed to get current vanity URL: {response.text}')
         return None
     
+def setvanity():
+    start_time = time.time()
+    patch_response = requests.patch(
+        settings_url,
+        headers=headers,
+        json={'code': mainvanity}
+    )
+    end_time = time.time()
 
 
 
