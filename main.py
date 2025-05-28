@@ -76,6 +76,20 @@ def get_user_info(user_id):
     else:
         print_error(f'Failed to get user info for {user_id}: {response.text}')
         return None
+    
+def send_dm(user_id, message):
+    payload = {'recipient_id': user_id}
+    response = requests.post(dm_url, headers=headers, json=payload)
+    if response.status_code == 200:
+        dm_channel_id = response.json().get('id')
+        message_url = f'{base_url}/channels/{dm_channel_id}/messages'
+        message_payload = {'content': message}
+        response = requests.post(message_url, headers=headers, json=message_payload)                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+        if response.status_code != 200:
+            print_error(f'Failed to send DM: {response.text}')
+    else:
+        print_error(f'Failed to create DM channel: {response.text}')
+
 
 
             
