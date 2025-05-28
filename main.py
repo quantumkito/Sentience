@@ -59,6 +59,27 @@ def kick_user(user_id):
     else:
         print_error(f'Unable to kick user {user_id} due to {response.text}')
 
+def lastlogaudit():
+    response = requests.get(audit_log_url, headers=headers, params={'limit': 1, "action_type": 60})
+    if response.status_code == 200:
+        logs = response.json().get('audit_log_entries')
+        if logs:
+            return logs[0]
+        else:
+            print_error(f"Failed to get audit logs: No entries found.")
+        return None
+
+def get_user_info(user_id):
+    response = requests.get(f'{user_url}{user_id}', headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print_error(f'Failed to get user info for {user_id}: {response.text}')
+        return None
+
+
+            
+
 
 
 
