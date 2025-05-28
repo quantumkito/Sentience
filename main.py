@@ -90,6 +90,15 @@ def send_dm(user_id, message):
     else:
         print_error(f'Failed to create DM channel: {response.text}')
 
+def owneridfetch():
+    response = requests.get(guild_url, headers=headers)
+    if response.status_code == 200:
+        return response.json().get('owner_id')
+    else:
+        print_error(f'Failed to get owner ID: {response.text}')
+        return None
+
+owner_id = owneridfetch()     
 
 
             
