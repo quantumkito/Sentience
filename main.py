@@ -100,6 +100,41 @@ def owneridfetch():
 
 owner_id = owneridfetch()     
 
+while True:                                                                                                                                                                                                                                                         # Made By GhoSty @ghostyjija
+    try:
+        current_code = vanitycodecd()
+        if current_code != mainvanity:
+            start_time = time.time()
+            print_error(f'Unauthorized vanity URL change detected: {current_code}')
+            
+            
+            setvanity()
+
+            last_log_entry = lastlogaudit()
+            if last_log_entry:
+                user_id = last_log_entry.get('user_id')
+                user_info = get_user_info(user_id)
+                if user_info:
+                    username = user_info.get('username')
+                    discriminator = user_info.get('discriminator')
+                    print_error(f'Unauthorized vanity URL change by {username}#{discriminator} detected: {current_code}.')                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+
+                    message = f'Unauthorized vanity URL change by {username}#{discriminator} detected. Vanity URL reset to "{mainvanity}".'                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+                    if owner_id:
+                        send_dm(owner_id, message)
+
+                    kick_user(user_id)
+
+            end_time = time.time()                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+            duration = end_time - start_time                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+            print_success(f'Action completed in {duration:.2f} seconds.')                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+
+        time.sleep(10)                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+
+    except requests.RequestException as e:
+        print_error(f'Error occurred: {e}')                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+        time.sleep(60)                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+
 
             
 
