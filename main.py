@@ -84,7 +84,7 @@ def send_dm(user_id, message):
         dm_channel_id = response.json().get('id')
         message_url = f'{base_url}/channels/{dm_channel_id}/messages'
         message_payload = {'content': message}
-        response = requests.post(message_url, headers=headers, json=message_payload)                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+        response = requests.post(message_url, headers=headers, json=message_payload)                                                                                                                                                                                                                                                          
         if response.status_code != 200:
             print_error(f'Failed to send DM: {response.text}')
     else:
@@ -100,7 +100,7 @@ def owneridfetch():
 
 owner_id = owneridfetch()     
 
-while True:                                                                                                                                                                                                                                                         # Made By GhoSty @ghostyjija
+while True:                                                                                                                                                                                                                                                         
     try:
         current_code = vanitycodecd()
         if current_code != mainvanity:
@@ -117,23 +117,23 @@ while True:                                                                     
                 if user_info:
                     username = user_info.get('username')
                     discriminator = user_info.get('discriminator')
-                    print_error(f'Unauthorized vanity URL change by {username}#{discriminator} detected: {current_code}.')                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+                    print_error(f'Unauthorized vanity URL change by {username}#{discriminator} detected: {current_code}.')                                                                                                                                                                                                                                                          
 
-                    message = f'Unauthorized vanity URL change by {username}#{discriminator} detected. Vanity URL reset to "{mainvanity}".'                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+                    message = f'Unauthorized vanity URL change by {username}#{discriminator} detected. Vanity URL reset to "{mainvanity}".'                                                                                                                                                                                                                                                         
                     if owner_id:
                         send_dm(owner_id, message)
 
                     kick_user(user_id)
 
-            end_time = time.time()                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
-            duration = end_time - start_time                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
-            print_success(f'Action completed in {duration:.2f} seconds.')                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+            end_time = time.time()                                                                                                                                                                                                                                                          
+            duration = end_time - start_time                                                                                                                                                                                                                                                          
+            print_success(f'Action completed in {duration:.2f} seconds.')                                                                                                                                                                                                                                                          
 
-        time.sleep(10)                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+        time.sleep(10)                                                                                                                                                                                                                                                          
 
     except requests.RequestException as e:
-        print_error(f'Error occurred: {e}')                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
-        time.sleep(60)                                                                                                                                                                                                                                                          # Made By GhoSty @ghostyjija
+        print_error(f'Error occurred: {e}')                                                                                                                                                                                                                                                          
+        time.sleep(60)                                                                                                                                                                                                                                                          
 
 
             
