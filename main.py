@@ -9,7 +9,7 @@ mainvanity = ''
 serverid = ''
 token = ''
  
-base_url = 'https://discord.com/api/v9'
+base_url = 'https://discord.com/api/v10'
 invite_url = f'{base_url}/invites/{mainvanity}'
 settings_url = f'{base_url}/guilds/{serverid}/vanity-url'                                                                                                                                                                                                                                                         
 audit_log_url = f'{base_url}/guilds/{serverid}/audit-logs'                                                                                                                                                                                                                                                          
